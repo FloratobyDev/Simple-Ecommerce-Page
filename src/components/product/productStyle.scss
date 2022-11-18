@@ -193,6 +193,7 @@ $black: hsl(0, 0%, 0%,75%);
             display: flex;
             width: 100%;
             column-gap: 15px;
+            user-select: none;
 
             .qty{
                 display: flex;
@@ -216,11 +217,18 @@ $black: hsl(0, 0%, 0%,75%);
                 }
 
                 button:active{
-                    filter:grayscale(.7);
+                    opacity: 80%;
+                }
+
+                button:hover{
+                    opacity: 80%;
                 }
 
                 .qty-count{
+                    text-align: center;
+                    // margin: auto;
                     user-select: none;
+                    width: 20px;
                     @include kumbhFont(700,16px,$black);
                 }
             }
@@ -255,6 +263,11 @@ $black: hsl(0, 0%, 0%,75%);
             .cart-button:active{
                 opacity: 80%;
             }
+
+            .cart-button:hover{
+                opacity: 80%;
+            }
+
         }
     }
 }
@@ -304,7 +317,7 @@ $black: hsl(0, 0%, 0%,75%);
                 }
                 // background?
             }
-            
+
            }
 
            .small-img-container{
