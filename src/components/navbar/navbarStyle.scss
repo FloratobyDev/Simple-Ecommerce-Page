@@ -1,0 +1,383 @@
+$orange: hsl(26, 100%, 55%);
+$pale-orange: hsl(25, 100%, 94%);
+$very-dark-blue: hsl(220, 13%, 13%);
+$dark-grayish-blue: hsl(219, 9%, 45%);
+$grayish-blue: hsl(220, 14%, 75%);
+$light-grayish-blue: hsl(223, 64%, 98%);
+$white: hsl(0, 0%, 100%);
+$black: hsl(0, 0%, 0%,75%);
+
+$brand-fs: 24px;
+
+@mixin kumbhFont($weight, $size, $color){
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: $weight;
+    font-size: $size;
+    color: $color;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar{
+    margin: auto;
+    width: 70vw;
+    
+    .nav-container{
+        margin:0;
+        padding:0;
+        display: flex;
+        flex-direction: row;
+        justify-content:space-between;
+        border: 1px solid $grayish-blue; 
+        border-style: solid none;
+        border-top-color: transparent;
+        align-items: center;
+        
+        .left-container{
+            
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 5vw;   
+            margin:5px;
+            
+            .menu{
+                display: none;
+                position: relative;
+                top: 3px;
+                width: 21x;
+                height: 16px;
+                transform: scaleX(1.2)
+            }
+
+            .brand-name{
+                // margin-bottom: 13px;
+                @include kumbhFont(700,30px,$black);
+            }
+
+            .tab-container{
+                display: flex;
+                flex-direction: row;
+                gap: 24px;
+                
+                // border: 50px 0px;    
+                .item{
+                    // position: relative;
+                    // top: 10px;
+                    cursor: pointer;
+                    padding: 42px 0px;
+                    @include kumbhFont(300,16px,$dark-grayish-blue);
+                    border-bottom: 5px solid transparent;
+                }
+                
+                .item:hover{
+                    border-bottom: 5px solid $orange;
+                }
+            }
+
+            @media (max-width: 500px) {
+                .tab-container{
+                    display: none;
+                    gap: 40px;
+                }
+            }
+        }
+
+        .right-container{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
+            .avatar-img{
+                cursor: pointer;
+                height: 50px;
+                width: 50px;
+            }
+
+            .avatar-img:hover{
+                border-radius: 50%;
+                box-shadow: 0 0 0 2px $orange;
+            }
+
+            .cart{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                cursor: pointer;
+             
+                span{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  
+                    position:absolute;
+                    right: -5px;
+                    top: -5px;
+                    width: 16px;
+                    height: 12px;
+                    background-color: $orange;
+                    border-radius: 15px;
+                    
+                    p{
+                        @include kumbhFont(700,8px,$white)
+                    }
+                }
+                .cart-img{
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+
+        }
+
+        .cart-container{
+            position: absolute;
+            width: 20vw;
+            height: auto;
+            right: 150px;
+            top: 100px;
+            border-radius: 6px;
+            background-color: $white;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+            display: none;
+            flex-direction: column;
+          
+            .cart-and-price{
+                display: flex;
+                flex-direction: row;
+                
+                justify-content: space-between;
+                // align-items: center;
+                h4{
+                    @include kumbhFont(700,14px,$very-dark-blue);
+                    text-align: left;
+                    padding: 20px;
+                }
+                border-bottom: 1px solid $grayish-blue;
+            }
+
+            .cart-item-container{
+
+                align-self: center;
+                width: 100%;
+                .item-and-checkout-container{
+                    
+                    text-align: left;
+                    padding:0px 20px 20px;
+
+                    .empty-cart{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width:  auto;
+                        height: 150px;
+
+                        p{
+                            @include kumbhFont(700, 14px, $dark-grayish-blue);
+                        }
+                    }
+                    .item-container{
+                        height: 150px;
+                        overflow-y: auto;
+                        .cart-item{
+                            margin: 8px 0px;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            // height: 10vh;
+                            align-items: center;
+                           
+                            .img-and-description{
+                                display: flex;
+                                flex-direction: row;
+                                gap: 10px;
+                                .cart-item-image{
+                                    user-select: none;
+                                    border-radius: 8px;
+                                    width: 2.9rem;
+                                    height: 2.9rem;
+                                }
+                                .cart-item-description{
+                                 display: flex;
+                                //  align-items: center;
+                                 justify-content: center;
+                                 flex-direction: column;
+                                    p{
+                                        @include kumbhFont(300,13px,$dark-grayish-blue);
+                                        line-height: 1.8;
+                                        span{
+                                            color:$black;
+                                            font-weight: bold;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .trash{
+                                cursor: pointer;
+                                width: 15px;
+                                height: 18px;
+                            }
+                        }
+                    }
+
+                    .item-container::-webkit-scrollbar{
+                        display: none;
+                    }
+
+
+
+                }
+                .checkout{
+                    @include kumbhFont(700,12px,$white);
+                    
+                    border:none;
+                    background-color: $orange;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    height: 50px;
+                    width: 100%;
+                }
+            }
+        }
+
+        .mobile-menu{
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .navbar{
+        width: 100%;
+        margin-bottom: 20px;
+        .nav-container{
+            border:none;
+            padding:10px 10px 0px;
+
+            .left-container{
+
+                .menu{
+                    display: inline;
+                    
+                }
+
+                .brand-name{
+                    // margin-bottom: 13px;
+                    @include kumbhFont(700,30px,$black);
+                }
+
+            }
+
+            .right-container{
+                gap: 25px;
+                .cart{
+                    .cart-img{
+                        height: 25px;
+                        width: 25px;
+                    }
+                }
+                .avatar-img{
+                  //  cursor: pointer;
+                    height: 34px;
+                    width: 34px;
+                }
+                .avatar-img:hover{
+                    // border-radius: 50%;
+                    box-shadow: none;
+                }
+
+                .avatar-img:active{
+                    border-radius: 50%;
+                    box-shadow: 0 0 0 2px $orange;
+                }
+                
+            }
+
+            .cart-container{
+                display: none;
+                justify-content: center;
+                right: 5%;
+                top: 80px;
+                z-index: 420;
+                height:auto; 
+                width: 90%;
+                border-radius: 15px;
+
+                .cart-and-price{
+                    h4{
+                        font-size: 18px;
+                    }
+                    margin-bottom: 15px;
+                }
+
+                .cart-item-container{
+                    width: 95%;
+
+                    .item-and-checkout-container{
+
+                        .item-container{
+                            .cart-item{
+                                .img-and-description{
+                                    gap:8px;
+                                    .cart-item-description{
+                                        p{
+                                            font-size: 16px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .checkout{
+                        font-size: 1rem;
+                        border-radius: 12px;
+                        height: 55px;
+                    }
+                }
+
+            }
+
+            .mobile-menu{
+                z-index: 9999;
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: -250px;
+                
+                padding: 30px 120px 0 30px;
+                height: 100%;
+                background: white;
+                row-gap: 20px;
+                // width: 0;
+                
+                transition: all 1s;
+                // width: ;
+                // display: none;
+                .mclose{
+                    width: 15px;
+                    height: auto;
+                }
+    
+                .mobile-tab-container{
+    
+                    text-align: left;
+                    .mitem{
+                        @include kumbhFont(bold,18px,$black);
+                        padding: 5px 0;
+                    }
+                }
+            }
+        }
+    }
+
+    
+}
