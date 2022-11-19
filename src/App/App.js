@@ -4,7 +4,7 @@ import Product from '../components/product/Product';
 import './App.scss';
 
 export const GroceryContext = createContext("Grocery");
-// img_path, product name, product price, qty about to buy, total price.
+
 function App() {
   const [groceryList, setGroceryList] = useState([])
 

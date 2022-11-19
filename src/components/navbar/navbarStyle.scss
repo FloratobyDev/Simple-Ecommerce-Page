@@ -27,36 +27,35 @@ $brand-fs: 24px;
     width: 70vw;
     
     .nav-container{
-        margin:0;
-        padding:0;
-        display: flex;
-        flex-direction: row;
-        justify-content:space-between;
+        align-items: center;
         border: 1px solid $grayish-blue; 
         border-style: solid none;
         border-top-color: transparent;
-        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content:space-between;
+        margin:0;
+        padding:0;
         
         .left-container{
             
+            align-items: center;
             display: flex;
             flex-direction: row;
-            align-items: center;
-            justify-content: center;
             gap: 5vw;   
+            justify-content: center;
             margin:5px;
             
             .menu{
                 display: none;
+                height: 16px;
                 position: relative;
                 top: 3px;
+                transform: scaleX(1.2);
                 width: 21x;
-                height: 16px;
-                transform: scaleX(1.2)
             }
 
             .brand-name{
-                // margin-bottom: 13px;
                 @include kumbhFont(700,30px,$black);
             }
 
@@ -64,15 +63,15 @@ $brand-fs: 24px;
                 display: flex;
                 flex-direction: row;
                 gap: 24px;
-                
-                // border: 50px 0px;    
+   
                 .item{
-                    position: relative;
-                    top: 5px;
-                    cursor: pointer;
-                    padding: 42px 0px;
                     @include kumbhFont(300,16px,$dark-grayish-blue);
+               
                     border-bottom: 5px solid transparent;
+                    cursor: pointer;
+                    position: relative;
+                    padding: 42px 0px;
+                    top: 5px;
                 }
                 
                 .item:hover{
@@ -89,9 +88,9 @@ $brand-fs: 24px;
         }
 
         .right-container{
+            align-items: center;
             display: flex;
             flex-direction: row;
-            align-items: center;
             gap: 30px;
             .avatar-img{
                 cursor: pointer;
@@ -105,24 +104,25 @@ $brand-fs: 24px;
             }
 
             .cart{
-                display: flex;
                 align-items: center;
+                cursor: pointer;
+                display: flex;
                 justify-content: center;
                 position: relative;
-                cursor: pointer;
              
                 span{
-                    display: flex;
                     align-items: center;
+                    background-color: $orange;
+                    border-radius: 15px;
+                    display: flex;
+                    height: 12px;
                     justify-content: center;
-                  
+               
+                    pointer-events: none;   
                     position:absolute;
                     right: -5px;
                     top: -5px;
                     width: 16px;
-                    height: 12px;
-                    background-color: $orange;
-                    border-radius: 15px;
                     
                     p{
                         @include kumbhFont(700,8px,$white)
@@ -137,27 +137,26 @@ $brand-fs: 24px;
         }
 
         .cart-container{
-            position: absolute;
-            width: 20vw;
-            height: auto;
-            right: 150px;
-            top: 100px;
             border-radius: 6px;
             background-color: $white;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
             display: none;
             flex-direction: column;
+            height: auto;
+            position: absolute;
+            right: 150px;
+            top: 100px;
+            width: 20vw;
           
             .cart-and-price{
                 display: flex;
                 flex-direction: row;
-                
                 justify-content: space-between;
-                // align-items: center;
+                
                 h4{
                     @include kumbhFont(700,14px,$very-dark-blue);
-                    text-align: left;
                     padding: 20px;
+                    text-align: left;
                 }
                 border-bottom: 1px solid $grayish-blue;
             }
@@ -168,15 +167,15 @@ $brand-fs: 24px;
                 width: 100%;
                 .item-and-checkout-container{
                     
-                    text-align: left;
                     padding:0px 20px 20px;
+                    text-align: left;
 
                     .empty-cart{
-                        display: flex;
                         align-items: center;
+                        display: flex;
+                        height: 150px;
                         justify-content: center;
                         width:  auto;
-                        height: 150px;
 
                         p{
                             @include kumbhFont(700, 14px, $dark-grayish-blue);
@@ -186,28 +185,26 @@ $brand-fs: 24px;
                         height: 150px;
                         overflow-y: auto;
                         .cart-item{
-                            margin: 8px 0px;
+                            align-items: center;
                             display: flex;
                             flex-direction: row;
+                            margin: 8px 0px;
                             justify-content: space-between;
-                            // height: 10vh;
-                            align-items: center;
                            
                             .img-and-description{
                                 display: flex;
                                 flex-direction: row;
                                 gap: 10px;
                                 .cart-item-image{
-                                    user-select: none;
                                     border-radius: 8px;
-                                    width: 2.9rem;
                                     height: 2.9rem;
+                                    user-select: none;
+                                    width: 2.9rem;
                                 }
                                 .cart-item-description{
                                  display: flex;
-                                //  align-items: center;
-                                 justify-content: center;
                                  flex-direction: column;
+                                 justify-content: center;
                                     p{
                                         @include kumbhFont(300,13px,$dark-grayish-blue);
                                         line-height: 1.8;
@@ -223,6 +220,10 @@ $brand-fs: 24px;
                                 cursor: pointer;
                                 width: 15px;
                                 height: 18px;
+                            }
+
+                            .trash:active{
+                                filter: invert(54%) sepia(79%) saturate(1749%) hue-rotate(347deg) brightness(100%) contrast(101%);
                             }
                         }
                     }
@@ -269,7 +270,6 @@ $brand-fs: 24px;
                 }
 
                 .brand-name{
-                    // margin-bottom: 13px;
                     @include kumbhFont(700,30px,$black);
                 }
 
@@ -284,12 +284,10 @@ $brand-fs: 24px;
                     }
                 }
                 .avatar-img{
-                  //  cursor: pointer;
                     height: 34px;
                     width: 34px;
                 }
                 .avatar-img:hover{
-                    // border-radius: 50%;
                     box-shadow: none;
                 }
 
@@ -301,14 +299,14 @@ $brand-fs: 24px;
             }
 
             .cart-container{
+                border-radius: 15px;
                 display: none;
+                height:auto; 
                 justify-content: center;
                 right: 5%;
                 top: 80px;
-                z-index: 420;
-                height:auto; 
                 width: 90%;
-                border-radius: 15px;
+                z-index: 420;
 
                 .cart-and-price{
                     h4{
@@ -337,8 +335,8 @@ $brand-fs: 24px;
                     }
 
                     .checkout{
-                        font-size: 1rem;
                         border-radius: 12px;
+                        font-size: 1rem;
                         height: 55px;
                     }
                 }
@@ -346,22 +344,18 @@ $brand-fs: 24px;
             }
 
             .mobile-menu{
-                z-index: 9999;
+                background: white;
                 display: flex;
                 flex-direction: column;
-                position: fixed;
-                top: 0;
-                left: -250px;
-                
-                padding: 30px 120px 0 30px;
                 height: 100%;
-                background: white;
+                left: -250px;
+                position: fixed;
+                padding: 30px 120px 0 30px;
                 row-gap: 20px;
-                // width: 0;
-                
+                top: 0; 
                 transition: all .5s;
-                // width: ;
-                // display: none;
+                z-index: 9999;
+                
                 .mclose{
                     width: 15px;
                     height: auto;

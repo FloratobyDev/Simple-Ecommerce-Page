@@ -1,18 +1,28 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import './navbarStyle.scss'
-import ItemCheckout from './ItemCheckout'
 import { GroceryContext } from '../../App/App'
+import CartComponent from './CartComponent'
+import MobileMenuComponent from './MobileMenuComponent'
 
 
 const Navbar = () => {
 
-    const cartContainerRef = useRef('')
+    //Stores object data for a product. Data is use to render merchandise that
+    // was added into the cart in the cart container. 
     const { groceryList } = useContext(GroceryContext)
+
+    //Total price about to pay, excluding tax.
     const [totalPrice, setPrice] = useState(0)
+
+    //Contains reference of the cart. Use for showing/hiding.
+    const cartContainerRef = useRef('')
+
+    //Both reference are use to handle menu's show/hide action.
     const menuRef = useRef(undefined)
     const menuHandleRef = useRef(false)
 
     useEffect(() => {
+
         if (groceryList.length > 0) {
             let totalPrice = 0;
             groceryList.forEach(item => {
@@ -20,6 +30,7 @@ const Navbar = () => {
             })
             setPrice(totalPrice)
         }
+
     }, [groceryList])
 
 
@@ -34,11 +45,9 @@ const Navbar = () => {
     }
 
     const handleMenu = () => {
-        const displayStatus = menuRef.current.style.display;
         menuHandleRef.current = !menuHandleRef.current;
 
         if (menuHandleRef.current) {
-            // menuRef.current.style.padding = '30px 120px 0 30px';
             menuRef.current.style.left = '0px'
         }
         else {
@@ -71,26 +80,8 @@ const Navbar = () => {
                     </div>
                     <img className='avatar-img' src="/images/image-avatar.png" alt="pfp" />
                 </div>
-                <div ref={cartContainerRef} className="cart-container">
-                    <div className="cart-and-price">
-                        <h4>Cart</h4>
-                        <h4>${totalPrice}</h4>
-                    </div>
-
-                    <div className="cart-item-container">
-                        <ItemCheckout />
-                    </div>
-                </div>
-                <div ref={menuRef} className="mobile-menu">
-                    <img onClick={handleMenu} className='mclose' src="/images/icon-close.svg" alt="" />
-                    <div className="mobile-tab-container">
-                        <h3 className="mitem">Collections</h3>
-                        <h3 className="mitem">Men</h3>
-                        <h3 className="mitem">Women</h3>
-                        <h3 className="mitem">About</h3>
-                        <h3 className="mitem">Contact</h3>
-                    </div>
-                </div>
+                <CartComponent cartContainerRef={cartContainerRef} totalPrice={totalPrice} />
+                <MobileMenuComponent menuRef={menuRef} handleMenu={handleMenu} />
             </div>
         </nav>
     )

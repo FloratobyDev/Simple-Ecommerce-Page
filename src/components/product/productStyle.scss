@@ -66,21 +66,18 @@ $black: hsl(0, 0%, 0%,75%);
             }
 
             .left-arrow{
-                // position: absolute;
               display: none;
               position: relative;
               left: 40px;
             }
 
             .right-arrow{
-                // position: absolute;
               display: none;
               position: relative;
               right: 40px;
             }
 
             .right-arrow:hover , .left-arrow:hover{
-                // fill:orange;
                 img{
                     filter: invert(54%) sepia(79%) saturate(1749%) hue-rotate(347deg) brightness(100%) contrast(101%);
                 }
@@ -149,7 +146,6 @@ $black: hsl(0, 0%, 0%,75%);
 
             .price-discount{
                 display: flex;
-                // align-items: center;
                 flex-direction: column;
                 
                 .discount-container{
@@ -167,7 +163,6 @@ $black: hsl(0, 0%, 0%,75%);
                         background-color: $pale-orange;
                         padding: 5px 7px;
                         margin-left: 15px;
-                        // color: $white;
                         @include kumbhFont(700,15px,$orange);
                     }
                 }
@@ -226,7 +221,6 @@ $black: hsl(0, 0%, 0%,75%);
 
                 .qty-count{
                     text-align: center;
-                    // margin: auto;
                     user-select: none;
                     width: 20px;
                     @include kumbhFont(700,16px,$black);
@@ -256,7 +250,6 @@ $black: hsl(0, 0%, 0%,75%);
 
                 p{
                     @include kumbhFont(700, 16px, $white);
-                    // color: white;
                 }
             }
 
@@ -264,15 +257,11 @@ $black: hsl(0, 0%, 0%,75%);
                 opacity: 80%;
             }
 
-            .cart-button:hover{
-                opacity: 80%;
-            }
+
 
         }
     }
 }
-
-// v MEDIA QUERY -----------------------------------------------------------------------------------------
 
 @media (max-width: 500px) {
    
@@ -292,8 +281,7 @@ $black: hsl(0, 0%, 0%,75%);
             .big-img{
                 border-radius: 0;
                 width: 100%;
-                height: 36vh;
-                // height: 350px;
+                height: 40vh;
                }
 
             .left-arrow{
@@ -311,11 +299,9 @@ $black: hsl(0, 0%, 0%,75%);
             }
 
             .right-arrow:hover , .left-arrow:hover{
-                // fill:orange;
                 img{
                     filter: none;
                 }
-                // background?
             }
 
            }
@@ -327,13 +313,10 @@ $black: hsl(0, 0%, 0%,75%);
 
         .right{
             width: 100%;
-            // row-gap: 5px;
             .prod-info-container{
                 padding: 30px 0px 0px 16px;
              
-                .brand-name{
-
-                }
+           
 
                 .prod-name{
                     margin: 0;
@@ -357,7 +340,6 @@ $black: hsl(0, 0%, 0%,75%);
 
             .qty-and-cart-button{
                 flex-direction: column;
-                // margin: 20px;
                 padding: 0 1.5rem;
                 gap: 10px;
                 .qty{
@@ -370,13 +352,14 @@ $black: hsl(0, 0%, 0%,75%);
                     width: 100%;
                 }
 
+                .cart-button:hover{
+                    opacity: 100%;
+                }
+
             }
         }
     }
 }
-
-// ^ MEDIA QUERY -----------------------------------------------------------------------------------------
-
 
 .image-toolkit{
     position: fixed;
@@ -386,14 +369,12 @@ $black: hsl(0, 0%, 0%,75%);
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,.6); /* Black background with opacity */
-    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
-    display: none; /* Hidden by default */
+    background-color: rgba(0,0,0,.6);
+    z-index: 2;
+    cursor: pointer; 
+    display: none; 
     align-items: center;
     justify-content: center;
-
-    // pointer-events: none;
 
     .left{
         position: fixed;
@@ -452,11 +433,9 @@ $black: hsl(0, 0%, 0%,75%);
             }
 
             .right-arrow:hover , .left-arrow:hover{
-                // fill:orange;
                 img{
                     filter: invert(54%) sepia(79%) saturate(1749%) hue-rotate(347deg) brightness(100%) contrast(101%);
                 }
-                // background?
             }
         }
 

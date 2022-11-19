@@ -1,28 +1,47 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { GroceryContext } from '../../App/App'
+import CarouselItems from './CarouselItems';
+import CarouselArrows from './CarouselArrows';
+import ProductInformation from './ProductInformation';
+import ProductQuantityComponent from './ProductQuantityComponent';
 import './productStyle.scss'
 
 const Product = () => {
 
-    const MIN = 1;
-    const MAX = 4;
+    const MIN = 1, MAX = 4;
+
+    //Reference hook for storing a thumbnail pointer to be use for scrolling through the thumbnail images and presenting it on to
+    //the big image. 
+    const clickedSmallImageRef = useRef(undefined)
+
+    //Stores object data for a product. Data is use to render merchandise that was added into the cart in the cart container. 
+    const { groceryList, setGroceryList } = useContext(GroceryContext)
+
+    //These couple of hooks are use for storing the url path for the product image. First one is for the main page and the second one  is for the toolkit.
     const [bigImageURL, setBigImageURL] = useState('/images/image-product-1.jpg')
     const [bigImageURLToolkit, setBigImageURLToolkit] = useState('/images/image-product-1.jpg')
 
-    const clickedSmallImageRef = useRef(undefined)
+    //Re-renders the component whenever the user increments/decrements the qty of items to buy. 
     const [qty, setQty] = useState(1)
+
+    //Stores the information about the product, if added to the cart.  
     const productPriceRef = useRef(undefined)
     const productTitle = useRef(undefined)
     const imagePath = useRef(undefined)
-    const toolkitOverlay = useRef(false)
-    const toolkitOverlayRef = useRef(undefined)
-    const { groceryList, setGroceryList } = useContext(GroceryContext)
-    const toolkitThumbnailList = useRef(undefined)
-    const mainThumbnailList = useRef(undefined)
 
-    const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+
+    //Reference for overlay and a switch to show/hide.
+    const toolkitOverlayRef = useRef(undefined)
+    const toolkitOverlay = useRef(false)
+
+    //A list that contains the data required for scrolling the images. It's kind of hacky and there's probably a better way to do it.
+    const mainThumbnailList = useRef(undefined)
+    const toolkitThumbnailList = useRef(undefined)
+
+    //Sets the value of a number within a range.
 
     useEffect(() => {
+
         clickedSmallImageRef.current = document.querySelector('.small-img-container span')
 
         if (clickedSmallImageRef.current) {
@@ -67,7 +86,7 @@ const Product = () => {
 
             url = url.replace(/\d/, parseNum)
             changeImage(url)
-            onClickedArrow(loopList.current[parseNum - 1])
+            onClicked(loopList.current[parseNum - 1], 'ARROW', (e) => { })
         }
         else if (type === 'inc') {
 
@@ -79,11 +98,9 @@ const Product = () => {
 
             url = url.replace(/\d/, parseNum)
             changeImage(url)
-            onClickedArrow(loopList.current[parseNum - 1])
+            onClicked(loopList.current[parseNum - 1], 'ARROW', (e) => { })
         }
     }
-
-
 
     const handleOverlayToggle = e => {
         if (toolkitOverlay.current !== undefined) {
@@ -92,24 +109,25 @@ const Product = () => {
         }
     }
 
-    const onClicked = event => {
-        clickedSmallImageRef.current.style.boxShadow = 'none';
-        clickedSmallImageRef.current.style.backgroundColor = 'none';
-        clickedSmallImageRef.current.children[0].style.opacity = '100%';
-        clickedSmallImageRef.current = event.currentTarget;
-        clickedSmallImageRef.current.style.boxShadow = '0 0 0px 2px hsl(26, 100%, 55%)';
-        clickedSmallImageRef.current.style.backgroundColor = 'rgba(255, 255, 255, 0.38)';
-        clickedSmallImageRef.current.children[0].style.opacity = '70%';
-    }
+    const onClicked = (event, actionType, changeImageCallback) => {
 
-    const onClickedArrow = event => {
         clickedSmallImageRef.current.style.boxShadow = 'none';
         clickedSmallImageRef.current.style.backgroundColor = 'none';
         clickedSmallImageRef.current.children[0].style.opacity = '100%';
-        clickedSmallImageRef.current = event;
+
+        if (actionType === 'ARROW') {
+            clickedSmallImageRef.current = event;
+        }
+        else if (actionType === 'THUMBNAIL') {
+            clickedSmallImageRef.current = event.currentTarget;
+
+        }
+
         clickedSmallImageRef.current.style.boxShadow = '0 0 0px 2px hsl(26, 100%, 55%)';
         clickedSmallImageRef.current.style.backgroundColor = 'rgba(255, 255, 255, 0.38)';
         clickedSmallImageRef.current.children[0].style.opacity = '70%';
+
+        changeImageCallback(event)
     }
 
     const handleSubmit = () => {
@@ -124,120 +142,38 @@ const Product = () => {
 
     return (
         <>
-            <div className='product'>
+            <main className='product'>
                 <div className="left">
-                    <div className='arrow-buttons'>
-                        <span onClick={(e) => {
-                            arrowChangeBigImage(e, 'dec', 'MAIN', bigImageURL, mainThumbnailList, setBigImageURL)
-                        }} className='left-arrow'>
-                            <img src="/images/icon-previous.svg" alt="" />
-                        </span>
-                        <img onClick={handleOverlayToggle} className='big-img' src={bigImageURL} alt="big-img" />
-                        <span onClick={(e) => {
-                            arrowChangeBigImage(e, 'inc', 'MAIN', bigImageURL, mainThumbnailList, setBigImageURL)
-                        }} className='right-arrow'>
-                            <img src="/images/icon-next.svg" alt="" />
-                        </span>
-                    </div>
-                    <div className="small-img-container">
-                        <span onClick={(e) => {
-                            onClicked(e)
-                            changeBigImage(e)
-                        }}>
-                            <img ref={imagePath} src="/images/image-product-1-thumbnail.jpg" alt="small-img" className="small-image" />
-                        </span>
-                        <span onClick={(e) => {
-                            onClicked(e)
-                            changeBigImage(e)
-                        }}>
-                            <img src="/images/image-product-2-thumbnail.jpg" alt="small-img" className="small-image" />
-                        </span>
-                        <span onClick={(e) => {
-                            onClicked(e)
-                            changeBigImage(e)
-                        }}>
-                            <img src="/images/image-product-3-thumbnail.jpg" alt="small-img" className="small-image" />
-                        </span>
-                        <span onClick={(e) => {
-                            onClicked(e)
-                            changeBigImage(e)
-                        }}>
-                            <img src="/images/image-product-4-thumbnail.jpg" alt="small-img" className="small-image" />
-                        </span>
-                    </div>
+                    <CarouselArrows handleOverlayToggle={handleOverlayToggle} actionType='MAIN' arrowChangeBigImage={arrowChangeBigImage} bigImageURL={bigImageURL} spanList={mainThumbnailList} setBigImageURL={setBigImageURL} />
+                    <CarouselItems onClicked={onClicked} changeBigImageFunction={changeBigImage} imagePath={imagePath} />
                 </div>
 
                 <div className="right">
-                    <div className="prod-info-container">
-                        <p className="brand-name">SNEAKER COMPANY</p>
-                        <p ref={productTitle} className="prod-name">Fall Limited Edition Sneakers</p>
-                        <p className="prod-desc">These low-profile sneakers are you perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.</p>
-                        <div className="price-discount">
-                            <div className='discount-container'>
-                                <p ref={productPriceRef} className="prod-price">125.00</p>
-                                <span className='discount'>-50%</span>
-                            </div>
-                            <p className="prod-orig-price">125.00</p>
-                        </div>
-                    </div>
+
+                    <ProductInformation
+                        productTitle={productTitle}
+                        productPriceRef={productPriceRef}
+                        productName="Fall Limited Edition Sneakers"
+                        productDescription="These low-profile sneakers are you perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer."
+                        productPrice="125.00"
+                        productOrigPrice="125.00"
+                        productDiscount="-50%"
+                    />
                     <div className="qty-and-cart-button">
-
-                        <div className="qty">
-                            <button onClick={() => { setQty(clamp(qty - 1, 0, 9999)) }} className="decrement"><img src="/images/icon-minus.svg" alt="" /></button>
-                            <p className='qty-count'>{qty}</p>
-                            <button onClick={() => { setQty(clamp(qty + 1, 0, 9999)) }} className="increment"><img src="/images/icon-plus.svg" alt="" /></button>
-                        </div>
-
+                        <ProductQuantityComponent qty={qty} setQty={setQty} />
                         <button onClick={handleSubmit} className="cart-button">
                             <img src="/images/icon-cart.svg" alt="icon-cart" />
                             <p>Add to cart</p>
                         </button>
                     </div>
                 </div>
-            </div>
+            </main>
 
             <div ref={toolkitOverlayRef} className="image-toolkit">
                 <div className="left">
                     <img onClick={handleOverlayToggle} className='close' src="/images/icon-close.svg" alt="" />
-                    <div className='arrow-buttons'>
-                        <span onClick={(e) => {
-                            arrowChangeBigImage(e, 'dec', 'OVERLAY', bigImageURLToolkit, toolkitThumbnailList, setBigImageURLToolkit)
-                        }} className='left-arrow'>
-                            <img src="/images/icon-previous.svg" alt="" />
-                        </span>
-                        <img className='big-img' src={bigImageURLToolkit} alt="big-img" />
-                        <span onClick={(e) => {
-                            arrowChangeBigImage(e, 'inc', 'OVERLAY', bigImageURLToolkit, toolkitThumbnailList, setBigImageURLToolkit)
-                        }} className='right-arrow'>
-                            <img src="/images/icon-next.svg" alt="" />
-                        </span>
-                    </div>
-                    <div className="small-img-container">
-                        <span onClick={e => {
-                            onClicked(e)
-                            changeBigImageToolkit(e)
-                        }}>
-                            <img ref={imagePath} src="/images/image-product-1-thumbnail.jpg" alt="small-img" className="small-image" />
-                        </span>
-                        <span onClick={e => {
-                            onClicked(e)
-                            changeBigImageToolkit(e)
-                        }}>
-                            <img src="/images/image-product-2-thumbnail.jpg" alt="small-img" className="small-image" />
-                        </span>
-                        <span onClick={e => {
-                            onClicked(e)
-                            changeBigImageToolkit(e)
-                        }}>
-                            <img src="/images/image-product-3-thumbnail.jpg" alt="small-img" className="small-image" />
-                        </span>
-                        <span onClick={e => {
-                            onClicked(e)
-                            changeBigImageToolkit(e)
-                        }}>
-                            <img src="/images/image-product-4-thumbnail.jpg" alt="small-img" className="small-image" />
-                        </span>
-                    </div>
+                    <CarouselArrows actionType='OVERLAY' arrowChangeBigImage={arrowChangeBigImage} bigImageURL={bigImageURLToolkit} spanList={toolkitThumbnailList} setBigImageURL={setBigImageURLToolkit} />
+                    <CarouselItems onClicked={onClicked} changeBigImageFunction={changeBigImageToolkit} imagePath={imagePath} />
                 </div>
             </div>
         </>
