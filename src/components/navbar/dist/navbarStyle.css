@@ -1,0 +1,369 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.SEPARATE {
+  position: relative;
+  top: default;
+  bottom: default;
+  right: default;
+  left: default;
+  height: 1px;
+  width: 200px;
+}
+
+.navbar {
+  margin: auto;
+  width: 70vw;
+}
+.navbar .nav-container {
+  align-items: center;
+  border: 1px solid #b6bcc8;
+  border-style: solid none;
+  border-top-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+.navbar .nav-container .left-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5vw;
+  margin: 5px;
+}
+.navbar .nav-container .left-container .menu {
+  height: 16px;
+  width: 21px;
+  position: relative;
+  top: 3px;
+  bottom: default;
+  right: default;
+  left: default;
+  display: none;
+  transform: scaleX(1.2);
+  -webkit-transform: scaleX(1.2);
+  -moz-transform: scaleX(1.2);
+  -ms-transform: scaleX(1.2);
+  -o-transform: scaleX(1.2);
+}
+.navbar .nav-container .left-container .brand-name {
+  font-family: "Kumbh Sans", monospace;
+  font-weight: 700;
+  font-size: 30px;
+  color: rgba(0, 0, 0, 0.75);
+}
+.navbar .nav-container .left-container .tab-container {
+  display: flex;
+  flex-direction: row;
+  align-items: default;
+  justify-content: default;
+  gap: 24px;
+}
+.navbar .nav-container .left-container .tab-container .item {
+  font-family: "Kumbh Sans", monospace;
+  font-weight: 300;
+  font-size: 16px;
+  color: #68707d;
+  position: relative;
+  top: 5px;
+  bottom: default;
+  right: default;
+  left: default;
+  border-bottom: 5px solid transparent;
+  cursor: pointer;
+  padding: 42px 0px;
+}
+.navbar .nav-container .left-container .tab-container .item:hover {
+  border-bottom: 5px solid #ff7d1a;
+}
+@media (max-width: 500px) {
+  .navbar .nav-container .left-container .tab-container {
+    display: none;
+    gap: 40px;
+  }
+}
+.navbar .nav-container .right-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: default;
+  gap: 30px;
+}
+.navbar .nav-container .right-container .avatar-img {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+}
+.navbar .nav-container .right-container .avatar-img:hover {
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #ff7d1a;
+}
+.navbar .nav-container .right-container .cart {
+  display: flex;
+  flex-direction: default;
+  align-items: center;
+  justify-content: center;
+  gap: default;
+  position: relative;
+  cursor: pointer;
+}
+.navbar .nav-container .right-container .cart div {
+  display: flex;
+  flex-direction: default;
+  align-items: center;
+  justify-content: center;
+  gap: default;
+  position: absolute;
+  top: -5px;
+  bottom: default;
+  right: -5px;
+  left: default;
+  height: 12px;
+  width: 16px;
+  background-color: #ff7d1a;
+  border-radius: 15px;
+  pointer-events: none;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+.navbar .nav-container .right-container .cart div p {
+  font-family: "Kumbh Sans", monospace;
+  font-weight: 700;
+  font-size: 8px;
+  color: white;
+}
+.navbar .nav-container .right-container .cart .cart-img {
+  height: 20px;
+  width: 20px;
+}
+.navbar .nav-container .cart-container {
+  height: auto;
+  width: 20vw;
+  position: absolute;
+  top: 100px;
+  bottom: default;
+  right: 150px;
+  left: default;
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  display: none;
+  flex-direction: column;
+}
+.navbar .nav-container .cart-container .cart-and-price {
+  display: flex;
+  flex-direction: row;
+  align-items: default;
+  justify-content: space-between;
+  gap: default;
+  border-bottom: 1px solid #b6bcc8;
+}
+.navbar .nav-container .cart-container .cart-and-price h4 {
+  font-family: "Kumbh Sans", monospace;
+  font-weight: 700;
+  font-size: 14px;
+  color: #1d2025;
+  padding: 20px;
+  text-align: left;
+}
+.navbar .nav-container .cart-container .cart-item-container {
+  align-self: center;
+  width: 100%;
+}
+.navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container {
+  padding: 0px 20px 20px;
+  text-align: left;
+}
+.navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .empty-cart {
+  display: flex;
+  flex-direction: center;
+  align-items: default;
+  justify-content: center;
+  gap: default;
+  height: 150px;
+  width: auto;
+}
+.navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .empty-cart p {
+  font-family: "Kumbh Sans", monospace;
+  font-weight: 700;
+  font-size: 14px;
+  color: #68707d;
+}
+.navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .item-container {
+  height: 150px;
+  overflow-y: auto;
+}
+.navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .item-container .cart-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: default;
+  margin: 8px 0px;
+}
+.navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .item-container .cart-item .img-and-description {
+  display: flex;
+  flex-direction: row;
+  align-items: default;
+  justify-content: default;
+  gap: 10px;
+}
+.navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .item-container .cart-item .img-and-description .cart-item-image {
+  height: 2.9rem;
+  width: 2.9rem;
+  border-radius: 8px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .item-container .cart-item .img-and-description .cart-item-description {
+  display: flex;
+  flex-direction: column;
+  align-items: default;
+  justify-content: center;
+  gap: default;
+}
+.navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .item-container .cart-item .img-and-description .cart-item-description p {
+  font-family: "Kumbh Sans", monospace;
+  font-weight: 300;
+  font-size: 13px;
+  color: #68707d;
+  line-height: 1.8;
+}
+.navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .item-container .cart-item .img-and-description .cart-item-description p span {
+  color: rgba(0, 0, 0, 0.75);
+  font-weight: bold;
+}
+.navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .item-container .cart-item .trash {
+  cursor: pointer;
+  width: 15px;
+  height: 18px;
+}
+.navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .item-container .cart-item .trash:active {
+  -webkit-filter: invert(54%) sepia(79%) saturate(1749%) hue-rotate(347deg) brightness(100%) contrast(101%);
+  filter: invert(54%) sepia(79%) saturate(1749%) hue-rotate(347deg) brightness(100%) contrast(101%);
+}
+.navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .item-container::-webkit-scrollbar {
+  display: none;
+}
+.navbar .nav-container .cart-container .cart-item-container .checkout {
+  font-family: "Kumbh Sans", monospace;
+  font-weight: 700;
+  font-size: 12px;
+  color: white;
+  border: none;
+  background-color: #ff7d1a;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 50px;
+  width: 100%;
+}
+.navbar .nav-container .mobile-menu {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .navbar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .navbar .nav-container {
+    border: none;
+    padding: 10px 10px 0px;
+  }
+  .navbar .nav-container .left-container .menu {
+    display: inline;
+  }
+  .navbar .nav-container .left-container .brand-name {
+    font-family: "Kumbh Sans", monospace;
+    font-weight: 700;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.75);
+  }
+  .navbar .nav-container .right-container {
+    gap: 25px;
+  }
+  .navbar .nav-container .right-container .cart .cart-img {
+    height: 25px;
+    width: 25px;
+  }
+  .navbar .nav-container .right-container .avatar-img {
+    height: 34px;
+    width: 34px;
+  }
+  .navbar .nav-container .right-container .avatar-img:hover {
+    box-shadow: none;
+  }
+  .navbar .nav-container .right-container .avatar-img:active {
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #ff7d1a;
+  }
+  .navbar .nav-container .cart-container {
+    border-radius: 15px;
+    display: none;
+    height: auto;
+    justify-content: center;
+    right: 5%;
+    top: 80px;
+    width: 90%;
+    z-index: 420;
+  }
+  .navbar .nav-container .cart-container .cart-and-price {
+    margin-bottom: 15px;
+  }
+  .navbar .nav-container .cart-container .cart-and-price h4 {
+    font-size: 18px;
+  }
+  .navbar .nav-container .cart-container .cart-item-container {
+    width: 95%;
+  }
+  .navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .item-container .cart-item .img-and-description {
+    gap: 8px;
+  }
+  .navbar .nav-container .cart-container .cart-item-container .item-and-checkout-container .item-container .cart-item .img-and-description .cart-item-description p {
+    font-size: 16px;
+  }
+  .navbar .nav-container .cart-container .cart-item-container .checkout {
+    border-radius: 12px;
+    font-size: 1rem;
+    height: 55px;
+  }
+  .navbar .nav-container .mobile-menu {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    left: -250px;
+    position: fixed;
+    padding: 30px 120px 0 30px;
+    row-gap: 20px;
+    top: 0;
+    transition: all 0.5s;
+    z-index: 9999;
+  }
+  .navbar .nav-container .mobile-menu .mclose {
+    width: 15px;
+    height: auto;
+  }
+  .navbar .nav-container .mobile-menu .mobile-tab-container {
+    text-align: left;
+  }
+  .navbar .nav-container .mobile-menu .mobile-tab-container .mitem {
+    font-family: "Kumbh Sans", monospace;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 5px 0;
+  }
+}

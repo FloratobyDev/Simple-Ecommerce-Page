@@ -41,7 +41,6 @@ function ItemContainer(props) {
 function Item(props) {
 
     const { groceryList, setGroceryList } = useContext(GroceryContext)
-    // const total = 10;
 
     const handleRemoveItem = () => {
         setGroceryList(groceryList.filter(item => item.id !== props.id))

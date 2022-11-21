@@ -5,6 +5,15 @@ import CartComponent from './CartComponent'
 import MobileMenuComponent from './MobileMenuComponent'
 
 
+/**
+ * New * 
+ * Context Hook 
+ * Hooking the reference hook to a ref attribute doesn't have to call 'target.' It is the target.
+ * Always remember to use .current when using a ref hook.
+ * Javascript events contains two types of target: target and currentTarget.
+ * 
+ */
+
 const Navbar = () => {
 
     //Stores object data for a product. Data is use to render merchandise that
@@ -73,9 +82,9 @@ const Navbar = () => {
                 </div>
                 <div className="right-container">
                     <div className="cart">
-                        <span>
+                        <div>
                             <p>{groceryList.length}</p>
-                        </span>
+                        </div>
                         <img className='cart-img' onClick={handleCart} src="/images/icon-cart.svg" alt="cart" />
                     </div>
                     <img className='avatar-img' src="/images/image-avatar.png" alt="pfp" />

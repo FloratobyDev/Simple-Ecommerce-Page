@@ -15,7 +15,7 @@ const Product = () => {
     const clickedSmallImageRef = useRef(undefined)
 
     //Stores object data for a product. Data is use to render merchandise that was added into the cart in the cart container. 
-    const { groceryList, setGroceryList } = useContext(GroceryContext)
+    const { setGroceryList: setgList, groceryList: glist } = useContext(GroceryContext)
 
     //These couple of hooks are use for storing the url path for the product image. First one is for the main page and the second one  is for the toolkit.
     const [bigImageURL, setBigImageURL] = useState('/images/image-product-1.jpg')
@@ -126,13 +126,12 @@ const Product = () => {
         clickedSmallImageRef.current.style.boxShadow = '0 0 0px 2px hsl(26, 100%, 55%)';
         clickedSmallImageRef.current.style.backgroundColor = 'rgba(255, 255, 255, 0.38)';
         clickedSmallImageRef.current.children[0].style.opacity = '70%';
-
         changeImageCallback(event)
     }
 
     const handleSubmit = () => {
-        setGroceryList([...groceryList, {
-            id: groceryList.length + 1,
+        setgList([...glist, {
+            id: glist.length + 1,
             imagePath: imagePath.current.getAttribute('src'),
             productTitle: productTitle.current.textContent,
             productPrice: Number(productPriceRef.current.textContent),
@@ -161,9 +160,9 @@ const Product = () => {
                     />
                     <div className="qty-and-cart-button">
                         <ProductQuantityComponent qty={qty} setQty={setQty} />
-                        <button onClick={handleSubmit} className="cart-button">
+                        <button type="button" onClick={handleSubmit} className="cart-button" value="Add to cart">
                             <img src="/images/icon-cart.svg" alt="icon-cart" />
-                            <p>Add to cart</p>
+                            Add to cart
                         </button>
                     </div>
                 </div>

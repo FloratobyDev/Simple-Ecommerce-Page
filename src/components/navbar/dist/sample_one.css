@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+}
+
+.name {
+  font-size: 12px;
+}
+
+.hide {
+  font-family: "monospace", sans-serif;
+  font-size: 12px;
+}
